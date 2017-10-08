@@ -1,0 +1,9 @@
+<h1>Usuario</h1>
+
+<%= render 'flash' %>
+
+<p><%= @user.email %></p>
+<p><%= image_tag "data:image/jpeg;base64,#{@user.image}", class: "resize" %> </p>
+
+<p><%= link_to "Editar", edit_user_path(@user) %></p>
+<p><%= link_to "Index", users_path %></p>

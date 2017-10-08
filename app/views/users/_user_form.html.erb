@@ -1,0 +1,23 @@
+<%= render 'flash' %>
+
+<%= form_for @user do |f| %>
+    
+    
+    <% if new_user %>
+        <p><%= f.label :email, "Email" %></p>
+        <p><%= f.email_field :email %></p>
+    <% else %>
+        <p>Email: <%= @user.email %></p>
+    <% end %>
+    
+    <p><%= f.label :image, "Imagen" %></p>
+
+    <% if @user.image.present? %>
+        <p>Imagen actual:</p>
+        <p><%= image_tag "data:image/jpeg;base64,#{@user.image}", class: 'resize' %></p>
+    <% end %>
+    
+    <p><%= f.file_field :image %></p>
+
+    <%= f.submit "Enviar" %>
+<% end %>

@@ -1,0 +1,20 @@
+<h1>Usuarios</h1>
+
+<%= render 'flash' %>
+
+<p><%= link_to "Nuevo usuario", new_user_path %></p>
+
+<table>
+    <tr>
+        <td>Email</td>
+        <td>Imagen</td>
+        <td>Acciones</td>
+    </tr>
+    <% @users.each do |u| %>
+        <tr>
+            <td><%= u.email %></td> 
+            <td><%= image_tag "data:image/jpeg;base64,#{u.image}", class: "resize" %></td>
+            <td><%= link_to "Editar", edit_user_path(u) %>, <%= link_to "Eliminar", { action: :destroy, id: u.id }, method: :delete, data: { confirm: '¿Estás Seguro?' } %></td>
+        </tr>
+    <% end %>
+</table>
