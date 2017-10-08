@@ -7,7 +7,7 @@ class UserModeImageUploaderTest < ActiveSupport::TestCase
         user = User.new
 
         user.email = "testinq@email.com"
-        user.image = Base64.encode64(File.read("#{Rails.root}/public/test_image.jpeg")).class
+        user.image = Base64.encode64(File.read("#{Rails.root}/public/test_image.jpeg"))
         
         assert user.valid?, user.errors.full_messages.inspect
     end
