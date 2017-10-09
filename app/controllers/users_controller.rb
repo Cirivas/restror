@@ -40,11 +40,12 @@ class UsersController < ApplicationController
 
     # GET /users/login
     def login_form
+        puts request.host
     end
 
     # POST /users/login
     def login
-        uri = "http://localhost:3000/rest/login"
+        uri = "http://#{request.host}:#{request.port}/rest/login"
         
         body = {
           "email" => params[:email],

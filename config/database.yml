@@ -25,3 +25,5 @@ production:
   database: d3im6rh75cblgr
   pool: 5
   timeout: 5000
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  port: 5432
