@@ -1,0 +1,14 @@
+<h1>Login</h1>
+
+<%= form_tag login_users_path, method: :post, multipart: true do %>
+    <p>Email</p>
+    <%= email_field_tag "email", nil, required: true %>
+
+    <p>Imagen</p>
+    <%= file_field_tag "image", required: true %>
+
+    <%= submit_tag "Enviar" %>
+<% end %>
+
+<%= render 'flash' %>
+<p><%= link_to "Index", users_path %></p>

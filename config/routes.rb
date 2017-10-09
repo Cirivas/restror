@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-    resources :users
+    resources :users do
+        collection do
+            get :login_form
+            post :login, as: :login
+        end
+    end
 
     namespace :rest do 
         post 'login', to: 'webservice1#login', as: :login

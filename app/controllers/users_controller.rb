@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
     require 'base64'
 
+    include Webservice
+
     # GET /users
     # returns all users
     def index
@@ -35,6 +37,31 @@ class UsersController < ApplicationController
             redirect_to new_user_path
         end
     end
+
+    # GET /users/login
+    def login_form
+    end
+
+    # POST /users/login
+    def login
+        uri = "http://localhost:3000/rest/login"
+        
+        body = {
+          "email" => params[:email],
+          "image" => Base64.encode64(File.read(params[:image].path))
+        }
+
+        response = request_to_uri(uri, body)
+
+        if response.code == "200"
+            flash[:success] = "Usuario verificado"
+        else
+            flash[:error] = "No se pudo verificar el usuario"
+        end
+
+        redirect_to login_form_users_path
+    end
+
 
     # GET /users/:id/edit
     # returns a specific user

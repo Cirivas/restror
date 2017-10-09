@@ -1,14 +1,15 @@
 class Rest::Webservice1Controller < ApplicationController
+	include Webservice
 
 	def login
-		client = HTTPClient.new
+		uri = "http://localhost:3000/rest/verify_user/" + params[:email]
+		body = {
+		  "image" => params[:image]
+		}
 
-		extHeaders = [["Content-type","application/json"]]
+		response = request_to_uri(uri, body)
 
-		body = { "image" => params[:image] }
-		response = client.post(rest_verify_user_url(params[:email]) , body.to_json, extHeaders)
-
-		render json: JSON.parse(response.content), status: response.status
+		render json: JSON.parse(response.body), status: response.code
 	end
 
 	private
