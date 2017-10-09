@@ -51,4 +51,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
+  test "login" do
+    upload = ActionDispatch::Http::UploadedFile.new({
+      :filename => 'test_image.jpeg',
+      :content_type => 'image/jpeg',
+      :tempfile => File.new("#{Rails.root}/public/test_image.jpeg")
+    })
+
+    post login_users_url, params: { email: 'ignacio@acid.cl', image: upload }
+    assert_equal "Usuario verificado", flash[:success]
+  end
 end

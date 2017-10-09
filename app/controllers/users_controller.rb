@@ -60,6 +60,10 @@ class UsersController < ApplicationController
             flash[:error] = "No se pudo verificar el usuario"
         end
 
+        user = User.where(email: params[:email]).first
+        puts "Sending email #{user.email}"
+        UserNotifierMailer.send_login_notification(user, response.code).deliver
+
         redirect_to login_form_users_path
     end
 
