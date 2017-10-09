@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
     # POST /users/login
     def login
-        uri = "http://#{request.host}:#{request.port}/rest/login"
+        uri = "http://restror.herokuapp.com/rest/login"
         
         body = {
           "email" => params[:email],

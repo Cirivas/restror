@@ -2,7 +2,7 @@ class Rest::Webservice1Controller < ApplicationController
 	include Webservice
 
 	def login
-		uri = "http://#{request.host}:#{request.port}/rest/verify_user/" + params[:email]
+		uri = "http://restror.herokuapp.com/rest/verify_user/" + params[:email]
 		body = {
 		  "image" => params[:image]
 		}
