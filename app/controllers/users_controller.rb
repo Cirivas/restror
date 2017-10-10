@@ -82,7 +82,6 @@ class UsersController < ApplicationController
     # updates a user
     def update
         @user = User.find(params[:id])
-        puts params
         @user.image = Base64.encode64(File.read(params[:user][:image].path))
         if @user.save
             flash[:success] = "Usuario actualizado correctamente"

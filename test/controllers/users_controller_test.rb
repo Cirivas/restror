@@ -45,6 +45,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
+  test "post login" do
+    upload = ActionDispatch::Http::UploadedFile.new({
+      :filename => 'test_image.jpeg',
+      :content_type => 'image/jpeg',
+      :tempfile => File.new("#{Rails.root}/public/test_image.jpeg")
+    })
+
+    post login_users_url, params: { user: { email: "test@email", image: upload } }
+    assert_equals "Usuario verificado", flash[:success]
+  end
+
   test "delete destroy" do
     user = users(:one)
     delete 'http://localhost:3000/users/1', params: { id: user.id }
