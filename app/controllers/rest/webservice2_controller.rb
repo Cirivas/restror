@@ -5,8 +5,8 @@ class Rest::Webservice2Controller < ApplicationController
 		if user.nil?
 			message, status = { "message" => "No encontrado" }, 404 
 		else 
-			if user.image == params[:image]
-
+			# If images are equals, simulate a 10% error
+			if user.image == params[:image] and rand(0..100) > 10
 				message, status = { "message" => "OK" }, 200
 			else
 				message, status = { "message" => "No autorizado" }, 401
