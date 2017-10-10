@@ -2,7 +2,12 @@ class Rest::Webservice1Controller < ApplicationController
 	include Webservice
 
 	def login
-		uri = "http://restror.herokuapp.com/rest/verify_user/" + params[:email]
+		if Rails.env.production?
+		    uri = "http://restror.herokuapp.com/rest/verify_user/" + params[:email]
+		else
+		    uri = "http://localhost:3000/rest/verify_user/" + params[:email]
+		end
+		
 		body = {
 		  "image" => params[:image]
 		}

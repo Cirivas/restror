@@ -45,7 +45,11 @@ class UsersController < ApplicationController
 
     # POST /users/login
     def login
-        uri = "http://restror.herokuapp.com/rest/login"
+        if Rails.env.production?
+            uri = "http://restror.herokuapp.com/rest/login"
+        else
+            uri = "http://localhost:3000/rest/login"
+        end
         
         body = {
           "email" => params[:email],
